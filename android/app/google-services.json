@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "673086184769",
+    "project_id": "wallet-20682",
+    "storage_bucket": "wallet-20682.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:673086184769:android:c37531c5180650aec7d5c0",
+        "android_client_info": {
+          "package_name": "com.example.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "673086184769-7ltv6a1juvfveqth6e0h9ia8aj3efbdb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.app",
+            "certificate_hash": "e19da091cb9c036d73268abd5da9fa81e24b409d"
+          }
+        },
+        {
+          "client_id": "673086184769-qp4248slh8g2p1fgqlfhd06q1gchkdtu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.app",
+            "certificate_hash": "fda7e5623a599c9f9eebe536a74704c6f8045655"
+          }
+        },
+        {
+          "client_id": "673086184769-nperbanj1p9hnrmjhrsap0vm0bnhfc7r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCrLOgQuu4_NbkvLxmJVBYzxYMgd1pxzXI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "673086184769-nperbanj1p9hnrmjhrsap0vm0bnhfc7r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
