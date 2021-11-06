@@ -90,6 +90,14 @@ class _MyHomePageState extends State<MyHomePage> {
 
               )
           ),
+          Container(
+            margin: const EdgeInsets.only(top: 30, right: 30),
+            alignment: Alignment.bottomRight,
+            child: FloatingActionButton(
+              onPressed: () {},
+              child: const Icon(Icons.add),
+              ),
+          ),
         ],
       )
     );
