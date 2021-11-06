@@ -72,6 +72,24 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               ),
           ),
+          Container(
+            margin: const EdgeInsets.all(20),
+            child:  ElevatedButton(
+              onPressed: () {}, 
+              child: const Text("Send Money"),
+              style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all<Color>(Colors.green)
+              ),
+              )
+          ),
+          Container(
+            margin: const EdgeInsets.all(10),
+            child:  ElevatedButton(
+              onPressed: () {}, 
+              child: const Text("Refresh Page"),
+
+              )
+          ),
         ],
       )
     );
