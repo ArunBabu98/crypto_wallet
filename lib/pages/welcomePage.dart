@@ -1,6 +1,7 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
@@ -11,9 +12,15 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  
+  var pro_pic;
+  var u_name;
  
   @override
   Widget build(BuildContext context) {
+    final user = FirebaseAuth.instance.currentUser;
+    if(user?.photoURL == null) {pro_pic = "assets/images/logo.png";} else {pro_pic = user!.photoURL;}
+    if(user?.displayName == null) {u_name = "User Name";} else {u_name = user!.displayName;}
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
@@ -25,17 +32,20 @@ class _MyHomePageState extends State<MyHomePage> {
             height: 150,
             alignment: Alignment.center,
             child: Container(
-              decoration: const BoxDecoration(
+              decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 color: Colors.white,
-                image: DecorationImage(image: AssetImage('assets/images/logo.png')))
+                image: DecorationImage(
+                  image: NetworkImage(pro_pic),
+                  scale: 0.1
+                  ))
               ),
             ),
           Container(
             margin: const EdgeInsets.all(20),
-            child: const Text(
-              "User Name",
-              style: TextStyle(
+            child:Text(
+              u_name,
+              style: const TextStyle(
                 fontSize: 20,
                 color: Colors.blueAccent,
                 fontWeight: FontWeight.bold
