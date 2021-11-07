@@ -17,9 +17,8 @@ class WalletAddress implements WalletAddressService {
 
   @override
   Future<String> getPrivateKey(String mnemonic) async {
-    final temp = bip39.mnemonicToSeed(mnemonic);
-    final seed = temp.toString();
-    final master = await ED25519_HD_KEY.getMasterKeyFromSeed(HEX.decode(seed),masterSecret: 'Bitcoin seed');
+    final seed = bip39.mnemonicToSeed(mnemonic);
+    final master = await ED25519_HD_KEY.getMasterKeyFromSeed(seed);
     final privateKey = HEX.encode(master.key);
     return privateKey;
   }
