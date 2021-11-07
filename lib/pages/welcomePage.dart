@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:app/pages/createWallet.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
@@ -104,7 +105,9 @@ class _MyHomePageState extends State<MyHomePage> {
             margin: const EdgeInsets.only(top: 30, right: 30),
             alignment: Alignment.bottomRight,
             child: FloatingActionButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => const CreateWallet()));
+              },
               child: const Icon(Icons.add),
               ),
           ),
