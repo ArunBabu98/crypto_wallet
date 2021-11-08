@@ -14,9 +14,29 @@ class CreateWallet extends StatefulWidget {
 }
 
 class _CreateWallet extends State<CreateWallet> {
-  int selected = 0;
+  int? selected;
   String? pubAddress;
   String? privAddress;
+  String? username;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    details();
+  }
+
+  details() async {
+    dynamic data = await getUserDetails();
+    setState(() {
+      privAddress = data['privateKey'];
+      pubAddress = data['publicKey'];
+      username = data['user_name'];
+      bool created = data['wallet_created'];
+      created == true ? selected = 1 : selected = 0;
+    });
+    print(selected);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -92,7 +112,7 @@ class _CreateWallet extends State<CreateWallet> {
                     Center(
                       child: Text(
                         "${privAddress}",
-                        style: const  TextStyle(
+                        style: const TextStyle(
                           fontSize: 10,
                         ),
                       ),
@@ -107,7 +127,7 @@ class _CreateWallet extends State<CreateWallet> {
                       ),
                     ),
                     const Divider(),
-                     const Center(
+                    const Center(
                       child: Text(
                         "Wallet Public Address : ",
                         style: TextStyle(
@@ -115,16 +135,16 @@ class _CreateWallet extends State<CreateWallet> {
                         ),
                       ),
                     ),
-                     Center(
+                    Center(
                       child: Text(
                         "${pubAddress}",
-                        style: const  TextStyle(
+                        style: const TextStyle(
                           fontSize: 10,
                         ),
                       ),
                     ),
                     const Divider(),
-                     const Center(
+                    const Center(
                       child: Text(
                         "Go back to main page!",
                         style: TextStyle(

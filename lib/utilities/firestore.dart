@@ -9,5 +9,14 @@ void addUserDetails(privateKey,publicKey) async {
     'publicKey': publicKey.toString(),
     'wallet_created': true
   }).whenComplete(() => {print("executed")}).catchError((error) {print(error.toString());});
+}
 
+Future<dynamic> getUserDetails() async {
+  dynamic data;
+  var userInstance = FirebaseAuth.instance.currentUser;
+  final DocumentReference document = FirebaseFirestore.instance.collection("users").doc(userInstance!.uid);
+  await document.get().then<dynamic>((DocumentSnapshot snapshot) {
+    data = snapshot.data();
+  });
+  return data;
 }
