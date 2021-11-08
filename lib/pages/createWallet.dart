@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:app/utilities/wallet_creation.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class CreateWallet extends StatefulWidget {
   const CreateWallet({Key? key}) : super(key: key);
@@ -12,6 +13,7 @@ class CreateWallet extends StatefulWidget {
 
 class _CreateWallet extends State<CreateWallet> {
   int selected = 0;
+  
 
   @override
   Widget build(BuildContext context) {
