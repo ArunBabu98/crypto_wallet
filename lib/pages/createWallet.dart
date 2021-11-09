@@ -3,9 +3,6 @@
 import 'package:flutter/material.dart';
 import 'package:app/utilities/wallet_creation.dart';
 import 'package:app/utilities/firestore.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:web3dart/web3dart.dart';
-
 class CreateWallet extends StatefulWidget {
   const CreateWallet({Key? key}) : super(key: key);
 
