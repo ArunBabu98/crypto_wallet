@@ -5,7 +5,6 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:app/pages/createWallet.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:web3dart/web3dart.dart';
 import 'package:http/http.dart';
 import 'package:flutter/services.dart';
@@ -25,10 +24,11 @@ class _MyHomePageState extends State<MyHomePage> {
   late Client httpClient;
   late Web3Client ethClient;
   String privAddress="";
+  EthereumAddress targetAddress = EthereumAddress.fromHex("0xfed0d2b05602d8b3b0fe5b7eb80f124ee98013cd");
   bool? created;
   var balance;
   var credentials;
-  
+  int myAmount = 5;
   var pro_pic;
   var u_name;
 
@@ -82,6 +82,21 @@ class _MyHomePageState extends State<MyHomePage> {
     setState(() {
       balance = data;
     });
+  }
+
+  Future<String> sendCoin() async {
+    var bigAmount = BigInt.from(myAmount);
+    var response = await submit("transfer",[targetAddress,bigAmount]);
+    return response;
+  }
+
+  Future<String> submit(String functionName, List<dynamic> args) async {
+    DeployedContract contract = await loadContract();
+    final ethFunction = contract.function(functionName);
+    EthPrivateKey key = EthPrivateKey.fromHex(privAddress);
+    print(targetAddress);
+    final result = await ethClient.sendTransaction(key,  Transaction.callContract(contract: contract, function: ethFunction, parameters: args, maxGas: 1000000) ,chainId:  4);
+    return "s";
   }
 
 
@@ -155,7 +170,10 @@ class _MyHomePageState extends State<MyHomePage> {
           Container(
             margin: const EdgeInsets.all(20),
             child:  ElevatedButton(
-              onPressed: () {}, 
+              onPressed: () async{
+                var response = await sendCoin();
+                print(response);
+              }, 
               child: const Text("Send Money"),
               style: ButtonStyle(
                 backgroundColor: MaterialStateProperty.all<Color>(Colors.green)
