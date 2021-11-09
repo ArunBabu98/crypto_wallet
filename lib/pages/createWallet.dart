@@ -25,14 +25,17 @@ class _CreateWallet extends State<CreateWallet> {
 
   details() async {
     dynamic data = await getUserDetails();
+    data != null?
     setState(() {
       privAddress = data['privateKey'];
       pubAddress = data['publicKey'];
       username = data['user_name'];
       bool created = data['wallet_created'];
       created == true ? selected = 1 : selected = 0;
+    }):
+    setState(() {
+      selected = 0;
     });
-    print(selected);
   }
 
   @override

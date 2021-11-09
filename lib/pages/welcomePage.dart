@@ -45,6 +45,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   details() async {
     dynamic data = await getUserDetails();
+    data != null ?
     setState(() {
       privAddress = data['privateKey'];
       var publicAdress = data['publicKey'];
@@ -57,7 +58,8 @@ class _MyHomePageState extends State<MyHomePage> {
       // print(wallet.toJson());
       created = data['wallet_created'];
       balance = getBalance(credentials);
-    });
+    }):
+    print("Data is NULL!");
   }
 
   Future<DeployedContract> loadContract() async {
@@ -93,7 +95,7 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Column(
+      body: ListView(
         children: [
           Container(
             color: Colors.amberAccent,
@@ -142,7 +144,7 @@ class _MyHomePageState extends State<MyHomePage> {
             width: MediaQuery.of(context).size.width,
             // color: Colors.black,
             child: Text(
-              "${balance}\$",
+              "${balance}\GLD",
               style: const TextStyle(
                 fontSize: 50,
                 color: Colors.blueAccent,
@@ -164,7 +166,9 @@ class _MyHomePageState extends State<MyHomePage> {
             margin: const EdgeInsets.all(10),
             child:  ElevatedButton(
               onPressed: () {
-                getBalance(credentials);
+                credentials != null?
+                getBalance(credentials):
+                print("credentials null");
               }, 
               child: const Text("Refresh Page"),
 
