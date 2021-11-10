@@ -94,9 +94,9 @@ class _MyHomePageState extends State<MyHomePage> {
     DeployedContract contract = await loadContract();
     final ethFunction = contract.function(functionName);
     EthPrivateKey key = EthPrivateKey.fromHex(privAddress);
-    print(targetAddress);
-    final result = await ethClient.sendTransaction(key,  Transaction.callContract(contract: contract, function: ethFunction, parameters: args, maxGas: 1000000) ,chainId:  4);
-    return "s";
+    Transaction transaction = await Transaction.callContract(contract: contract, function: ethFunction, parameters: args, maxGas: 100000);
+    final result = await ethClient.sendTransaction(key,transaction ,chainId:4);
+    return result;
   }
 
 
