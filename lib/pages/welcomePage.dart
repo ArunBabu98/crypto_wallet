@@ -95,6 +95,7 @@ class _MyHomePageState extends State<MyHomePage> {
     final ethFunction = contract.function(functionName);
     EthPrivateKey key = EthPrivateKey.fromHex(privAddress);
     Transaction transaction = await Transaction.callContract(contract: contract, function: ethFunction, parameters: args, maxGas: 100000);
+    print(transaction.nonce);
     final result = await ethClient.sendTransaction(key,transaction ,chainId:4);
     return result;
   }
@@ -113,7 +114,7 @@ class _MyHomePageState extends State<MyHomePage> {
       body: ListView(
         children: [
           Container(
-            color: Colors.amberAccent,
+            color: Colors.blue[600],
             height: 150,
             alignment: Alignment.center,
             child: Container(
@@ -159,6 +160,8 @@ class _MyHomePageState extends State<MyHomePage> {
             width: MediaQuery.of(context).size.width,
             // color: Colors.black,
             child: Text(
+              balance == null? 
+              "0 GLD":
               "${balance}\GLD",
               style: const TextStyle(
                 fontSize: 50,
